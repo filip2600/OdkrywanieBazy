@@ -166,12 +166,8 @@ public class Wyglad {
 		e.printStackTrace();
 	}
 		
-	for(int z=0;z<loginy.size();z++)
-	{
-		System.out.println(loginy.get(z));
-		System.out.println(hasla.get(z));
-	}
-
+	Pliktxt plik=new Pliktxt();
+	plik.tworzplik(loginy, hasla);
 	
 		
 		
