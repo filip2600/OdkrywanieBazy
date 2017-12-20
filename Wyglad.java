@@ -21,9 +21,20 @@ import javafx.scene.layout.Border;
 
 public class Wyglad {
 	
+	//Dotyczy 1 i 2
 	static int i=0;
+	
+	
+	//Dotyczy 1
 	static int h=0;
-   static int d=0;
+	
+	
+   //Dotyczyny 2
+	static int ih=0;
+	static int dh=0;
+	   static int d=0;
+
+	 
 	
 	
 	static ArrayList<String> loginy=new ArrayList<String>();
@@ -31,10 +42,9 @@ public class Wyglad {
 	static JTextField login=new JTextField();
 	static JTextField haslo=new JTextField();
 	static Connection c=null;
-	static int czyznalazlo=0;
+	
 	static int czyznalazloh=0;
-	static int czyznalazlo2=0;
-	static int czyznalazloh2=0;
+	
 	public static void main(String[] args) {
 
 
@@ -76,30 +86,26 @@ public class Wyglad {
 		PreparedStatement ps = null;
 		ResultSet odpowiedz = null;
 		c=p.polaczenie();
-		
+		int maksmozliwosci=0;
 			//tu bede zajmowal sie loginem
-			while(czyznalazlo!=2)
+			while(maksmozliwosci!=25)
 			{
 			try
 			{
-				
-				
+				maksmozliwosci++;			
 				String wylosowane=probylogin();
 				String query="select * from Uzytkownicy where Nick=?";
 				ps=c.prepareStatement(query);
 				ps.setString(1,wylosowane); //tu ma szukac
 				odpowiedz=ps.executeQuery();
-				
-				
 				while(odpowiedz.next())
 				{
 					
-					czyznalazlo++;
+					
 					czyznalazloh=0;
 					h=0;
 				 
-					
-					System.out.println("ODP: "+odpowiedz.getString(1));
+			
 				 loginy.add(odpowiedz.getString(1));
 				 
 				 funkcjahaslo(odpowiedz.getString(1));
@@ -121,31 +127,42 @@ public class Wyglad {
 		}
 		
 		i=0;
-		while(czyznalazlo2!=1)
+		czyznalazloh=0;
+		int maksmozliwosci2=0;
+		while(maksmozliwosci2!=676)
 		{
 		try
 		{
+			maksmozliwosci2++;
+			System.out.println(maksmozliwosci2);
 			String wylosowane=probylogin2();
 			String query="select * from Uzytkownicy where Nick=?";
 			ps=c.prepareStatement(query);
 			ps.setString(1,wylosowane); //tu ma szukac
 			odpowiedz=ps.executeQuery();
 	
+			
+			
 			while(odpowiedz.next())
 			{
 				
-				czyznalazlo2++;
-				i=0;
+				
+				
 			
 			 loginy.add(odpowiedz.getString(1));
+			 ih=0;
+			 dh=0;
 			 funkcjahaslo2(odpowiedz.getString(1));
 			 czyznalazloh=0;
+			 
+		  
 			 
 			 
 				
 				
 				
 			}
+			
 			
 			
 		}
@@ -178,15 +195,6 @@ public class Wyglad {
 	
 	}
   
-	
-	
-		
-		
-		
-		
-		
-
-	
 	
 	static String probylogin()
 	{
@@ -263,8 +271,6 @@ public class Wyglad {
 		
 	}
 	
-	
-	
 	static String probylogin2()
 	{
 		String zwrotna = null;
@@ -284,9 +290,7 @@ public class Wyglad {
 		
 	
 		
-		return zwrotna;
-
-		
+		return zwrotna;	
 	}
 	static String probyhaslo2()
 	{
@@ -294,26 +298,25 @@ public class Wyglad {
 		String zwrotna = null;
 		if(i<26)
 		{
-		zwrotna=Character.toString((char)(i+97))+Character.toString((char)(d+97));
+		zwrotna=Character.toString((char)(ih+97))+Character.toString((char)(dh+97));
 					haslo.setText(zwrotna);
-					i++;
+					ih++;
 				
 		}
-		if(i==26)
+		if(ih==26)
 		{
-			i=0;
-			d++;
+			ih=0;
+			dh++;
 		}
 	
 		
 		//jesli i bedzie 25 na jedynkach to break
 		return zwrotna;
-	}
-	
+	}	
 	static void funkcjahaslo2(String nick)
 	{
 	
-		while(czyznalazloh2!=1)
+		while(czyznalazloh!=1)
 		{
 		try
 		{
@@ -326,7 +329,7 @@ public class Wyglad {
 			ResultSet odpowiedz=ps.executeQuery();
 			while(odpowiedz.next())
 			{
-				czyznalazloh2++;
+				czyznalazloh++;
 				 hasla.add(odpowiedz.getString(2));
 		
 				
@@ -340,8 +343,8 @@ public class Wyglad {
 		}
 		}
 		
+	}	
 	}
-	
 
-		
-	}
+
+//Zrobic 3 cyfrowe 
