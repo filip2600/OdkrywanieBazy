@@ -40,6 +40,13 @@ public class Wyglad {
 		
 		//Dotyczy 3
 		static int maksmozliwosci3=0;
+		static int i3=0;
+		static int d3=0;
+		static int e3=0;
+		static int i3h=0;
+		static int d3h=0;
+		static int e3h=0;
+		
 		
 		
 
@@ -89,6 +96,8 @@ public class Wyglad {
 		i=0;
 		czyznalazloh=0;
 		uruchomdwojki();
+		czyznalazloh=0;
+		uruchomtrojki();
 		
 	Pliktxt plik=new Pliktxt();
 	plik.tworzplik(loginy, hasla);
@@ -251,6 +260,97 @@ public class Wyglad {
 		}
 		
 	}	
+	static String probylogin3()
+	{
+		String zwrotna = null;
+		if(i3<26)
+		{
+		zwrotna=Character.toString((char)(i3+97))+Character.toString((char)(d3+97))+Character.toString((char)(e3+97));
+					login.setText(zwrotna);
+					e3++;
+				
+					
+				
+		}
+		if(e3==26)
+		{
+			e3=0;
+			d3++;
+		}
+		if(d3==26)
+		{
+			i3++;
+			d3=0;
+			e3=0;
+		}
+		
+		
+		
+		
+		
+	
+		
+		return zwrotna;	
+	}
+	
+	static String probyhaslo3()
+	{
+	
+		String zwrotna = null;
+		if(i3h<26)
+		{
+		zwrotna=Character.toString((char)(i3h+97))+Character.toString((char)(d3h+97))+Character.toString((char)(e3h+97));
+					haslo.setText(zwrotna);
+					e3h++;
+				
+					
+				
+		}
+		if(e3h==26)
+		{
+			e3h=0;
+			d3h++;
+		}
+		if(d3h==26)
+		{
+			i3h++;
+			d3h=0;
+			e3h=0;
+		}
+		return zwrotna;
+	}	
+	static void funkcjahaslo3(String nick)
+	{
+	
+		while(czyznalazloh!=1)
+		{
+		try
+		{
+			String wylosowaneh=probyhaslo3();
+			
+			String query="select * from Uzytkownicy where Haslo=? and Nick=?";
+			PreparedStatement ps=c.prepareStatement(query);
+			ps.setString(1,wylosowaneh);
+			ps.setString(2,nick);
+			ResultSet odpowiedz=ps.executeQuery();
+			while(odpowiedz.next())
+			{
+				czyznalazloh++;
+				 hasla.add(odpowiedz.getString(2));
+		
+				
+			}
+			
+			
+		}
+		catch (Exception e)
+		{
+			
+		}
+		}
+		
+	}
+	
 	
 	
 	
@@ -355,14 +455,14 @@ public class Wyglad {
  
  static void uruchomtrojki()
  {
-	 
+	 System.out.println("w");
 	 while(maksmozliwosci3!=17576)
 		{
 		try
 		{
 			maksmozliwosci3++;
-			System.out.println(maksmozliwosci2);
-			String wylosowane=probylogin2();
+			System.out.println(maksmozliwosci3);
+			String wylosowane=probylogin3();
 			String query="select * from Uzytkownicy where Nick=?";
 			ps=c.prepareStatement(query);
 			ps.setString(1,wylosowane); //tu ma szukac
@@ -372,22 +472,15 @@ public class Wyglad {
 			
 			while(odpowiedz.next())
 			{
-				
-				
-				
-			
+
 			 loginy.add(odpowiedz.getString(1));
-			 ih=0;
-			 dh=0;
-			 funkcjahaslo2(odpowiedz.getString(1));
+			 i3h=0;
+			 d3h=0;
+			 e3h=0;
+			 funkcjahaslo3(odpowiedz.getString(1));
 			 czyznalazloh=0;
 			 
-		  
 			 
-			 
-				
-				
-				
 			}
 			
 			
@@ -415,7 +508,6 @@ public class Wyglad {
 	
 	
 	}
-
-
-
-//Zrobic 3 cyfrowe 
+	
+	
+	
