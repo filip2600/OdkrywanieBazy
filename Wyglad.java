@@ -27,16 +27,23 @@ public class Wyglad {
 	
 	//Dotyczy 1
 	static int h=0;
+ static	int maksmozliwosci=0;
 	
 	
    //Dotyczyny 2
 	static int ih=0;
 	static int dh=0;
 	   static int d=0;
+	   static PreparedStatement ps = null;
+		static ResultSet odpowiedz = null;
+		static int maksmozliwosci2=0;
+		
+		//Dotyczy 3
+		static int maksmozliwosci3=0;
+		
+		
 
 	 
-	
-	
 	static ArrayList<String> loginy=new ArrayList<String>();
 	static ArrayList<String> hasla=new ArrayList<String>();
 	static JTextField login=new JTextField();
@@ -76,112 +83,12 @@ public class Wyglad {
 			}
 		});
 		
-		
-		
-		
-		
-		
-		
-		
-		PreparedStatement ps = null;
-		ResultSet odpowiedz = null;
+
 		c=p.polaczenie();
-		int maksmozliwosci=0;
-			//tu bede zajmowal sie loginem
-			while(maksmozliwosci!=25)
-			{
-			try
-			{
-				maksmozliwosci++;			
-				String wylosowane=probylogin();
-				String query="select * from Uzytkownicy where Nick=?";
-				ps=c.prepareStatement(query);
-				ps.setString(1,wylosowane); //tu ma szukac
-				odpowiedz=ps.executeQuery();
-				while(odpowiedz.next())
-				{
-					
-					
-					czyznalazloh=0;
-					h=0;
-				 
-			
-				 loginy.add(odpowiedz.getString(1));
-				 
-				 funkcjahaslo(odpowiedz.getString(1));
-				
-				 
-					
-					
-					
-				}
-				
-				ps.close();
-				odpowiedz.close();
-			}
-			
-			catch (Exception e)
-			{
-				
-			}
-		}
-		
+			uruchomjedynki();
 		i=0;
 		czyznalazloh=0;
-		int maksmozliwosci2=0;
-		while(maksmozliwosci2!=676)
-		{
-		try
-		{
-			maksmozliwosci2++;
-			System.out.println(maksmozliwosci2);
-			String wylosowane=probylogin2();
-			String query="select * from Uzytkownicy where Nick=?";
-			ps=c.prepareStatement(query);
-			ps.setString(1,wylosowane); //tu ma szukac
-			odpowiedz=ps.executeQuery();
-	
-			
-			
-			while(odpowiedz.next())
-			{
-				
-				
-				
-			
-			 loginy.add(odpowiedz.getString(1));
-			 ih=0;
-			 dh=0;
-			 funkcjahaslo2(odpowiedz.getString(1));
-			 czyznalazloh=0;
-			 
-		  
-			 
-			 
-				
-				
-				
-			}
-			
-			
-			
-		}
-	 
-	   
-		catch (Exception e)
-		{
-			
-		}
-	}
-	
-	
-	try {
-		odpowiedz.close();
-		ps.close();
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+		uruchomdwojki();
 		
 	Pliktxt plik=new Pliktxt();
 	plik.tworzplik(loginy, hasla);
@@ -344,7 +251,171 @@ public class Wyglad {
 		}
 		
 	}	
+	
+	
+	
+ static void uruchomjedynki()
+ {
+	 while(maksmozliwosci!=25)
+		{
+		try
+		{
+			maksmozliwosci++;			
+			String wylosowane=probylogin();
+			String query="select * from Uzytkownicy where Nick=?";
+			ps=c.prepareStatement(query);
+			ps.setString(1,wylosowane); //tu ma szukac
+			odpowiedz=ps.executeQuery();
+			while(odpowiedz.next())
+			{
+				
+				
+				czyznalazloh=0;
+				h=0;
+			 
+		
+			 loginy.add(odpowiedz.getString(1));
+			 
+			 funkcjahaslo(odpowiedz.getString(1));
+			
+			 
+				
+				
+				
+			}
+			
+			ps.close();
+			odpowiedz.close();
+		}
+		
+		catch (Exception e)
+		{
+			
+		}
 	}
+ }
+ 
+ static void uruchomdwojki()
+ {
+	 while(maksmozliwosci2!=676)
+		{
+		try
+		{
+			maksmozliwosci2++;
+			String wylosowane=probylogin2();
+			String query="select * from Uzytkownicy where Nick=?";
+			ps=c.prepareStatement(query);
+			ps.setString(1,wylosowane); //tu ma szukac
+			odpowiedz=ps.executeQuery();
+	
+			
+			
+			while(odpowiedz.next())
+			{
+				
+				
+				
+			
+			 loginy.add(odpowiedz.getString(1));
+			 ih=0;
+			 dh=0;
+			 funkcjahaslo2(odpowiedz.getString(1));
+			 czyznalazloh=0;
+			 
+		  
+			 
+			 
+				
+				
+				
+			}
+			
+			
+			
+		}
+	 
+	   
+		catch (Exception e)
+		{
+			
+		}
+	}
+	
+	
+	try {
+		odpowiedz.close();
+		ps.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	 
+	 
+ }
+ 
+ static void uruchomtrojki()
+ {
+	 
+	 while(maksmozliwosci3!=17576)
+		{
+		try
+		{
+			maksmozliwosci3++;
+			System.out.println(maksmozliwosci2);
+			String wylosowane=probylogin2();
+			String query="select * from Uzytkownicy where Nick=?";
+			ps=c.prepareStatement(query);
+			ps.setString(1,wylosowane); //tu ma szukac
+			odpowiedz=ps.executeQuery();
+	
+			
+			
+			while(odpowiedz.next())
+			{
+				
+				
+				
+			
+			 loginy.add(odpowiedz.getString(1));
+			 ih=0;
+			 dh=0;
+			 funkcjahaslo2(odpowiedz.getString(1));
+			 czyznalazloh=0;
+			 
+		  
+			 
+			 
+				
+				
+				
+			}
+			
+			
+			
+		}
+	 
+	   
+		catch (Exception e)
+		{
+			
+		}
+	}
+	
+	
+	try {
+		odpowiedz.close();
+		ps.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	 
+ }
+	
+	
+	
+	}
+
 
 
 //Zrobic 3 cyfrowe 
